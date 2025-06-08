@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .views import View
+from django.views import View
 
 def HomeView(self, request):
     def get(self, request):
