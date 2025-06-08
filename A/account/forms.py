@@ -8,8 +8,14 @@ class UserRegistrationForm(forms.Form):
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'})) 
  
 	def clean_email(self):
-		email = self.clean_data['email']
+		email = self.cleaned_data['email']
 		user = User.objects.filter(email=email).exists()
 		if user:
 			raise ValidationError('this email already exists')
 		return email
+	def clean_username(self):
+		username = self.cleaned_data['username']
+		user = User.objects.filter(username=username).exists()
+		if user:
+			raise ValidationError('this username alreadey exists')
+		return username
